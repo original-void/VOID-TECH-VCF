@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VOID TECH VCF</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --bg-start: #1e293b;
+    --bg-mid: #0f172a;
+    --bg-end: #0c1220;
+    --card-bg: rgba(30, 41, 59, 0.8);
+    --card-bg-2: rgba(15, 23, 42, 0.8);
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --border: rgba(51, 65, 85, 0.5);
+    --input-bg: rgba(15, 23, 42, 0.6);
+    --table-bg: rgba(15, 23, 42, 0.5);
+    --table-hover: rgba(51, 65, 85, 0.2);
+  }
+  
+  [data-theme="light"] {
+    --bg-start: #f8fafc;
+    --bg-mid: #e2e8f0;
+    --bg-end: #cbd5e1;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-bg-2: rgba(248, 250, 252, 0.8);
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --border: rgba(203, 213, 225, 0.6);
+    --input-bg: rgba(255, 255, 255, 0.6);
+    --table-bg: rgba(248, 250, 252, 0.5);
+    --table-hover: rgba(203, 213, 225, 0.3);
+  }
+  
+    * { box-sizing: border-box; }
+  
+  body { 
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+    max-width: 750px; 
+    margin: 0 auto; 
+    padding: 30px 20px; 
+    background: radial-gradient(1200px 800px at 80% -10%, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+    color: var(--text-primary); 
+    min-height: 100vh;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  
+  .brand { 
+    display: flex; 
+    align-items: center; 
+    gap: 16px; 
+    animation: fadeIn 0.6s ease;
+  }
+  
+  .brand svg { 
+    width: 48px; 
+    height: 48px; 
+    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5));
+  }
+  
+  h1 { 
+    color: #38bdf8; 
+    letter-spacing: 1.5px; 
+    margin: 0; 
+    font-size: 32px; 
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  }
+  
+  h1 span { 
+    color: #facc15; 
+    text-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+  }
+  
+  .tagline { 
+    color: var(--text-secondary); 
+    font-size: 14px; 
+    margin-top: 6px; 
+    font-weight: 500;
+  }
+  
+  .theme-toggle {
+    width: auto;
+    padding: 10px 16px;
+    margin: 0;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+  }
+  
+  .theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card { 
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg-2) 100%);
+    padding: 24px; 
+    border-radius: 16px; 
+    margin-bottom: 24px; 
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    animation: slideUp 0.5s ease;
+    transition: all 0.4s ease;
+  }
+  
+  .card h3 {
+    margin-top: 0;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  input, button:not(.theme-toggle) { 
+    width: 100%; 
+    padding: 14px 16px; 
+    margin: 10px 0; 
+    border-radius: 10px; 
+    border: 1px solid var(--border); 
+    background: var(--input-bg); 
+    color: var(--text-primary); 
+    font-size: 15px; 
+    font-family: inherit;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+  }
+  
+  button:not(.theme-toggle) { 
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%); 
+    color: #0f172a; 
+    font-weight: 700; 
+    cursor: pointer; 
+    border: none; 
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+  }
+  
+  button:not(.theme-toggle):hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+  }
+  
+  button:disabled { 
+    background: #475569; 
+    cursor: not-allowed; 
+    transform: none;
+    box-shadow: none;
+  }
+  
+  table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 16px; 
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  th, td { 
+    padding: 12px 16px; 
+    border-bottom: 1px solid var(--border); 
+    text-align: left; 
+  }
+  
+  th { 
+    color: var(--text-secondary); 
+    background: var(--table-bg);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  tr:hover {
+    background: var(--table-hover);
+  }
+  
+  .count { 
+    color: var(--text-secondary); 
+    font-size: 14px; 
+    margin-top: 12px;
+    font-weight: 500;
+  }
+  
+  .hidden { display: none; }
+  
+  .status { 
+    padding: 14px; 
+    border-radius: 10px; 
+    margin-top: 12px; 
+    text-align: center; 
+    font-weight: 600;
+    animation: fadeIn 0.4s ease;
+  }
+  
+  .status.closed { 
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
+    color: white; 
+  }
+  
+  .status.open { 
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); 
+    color: white; 
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    body { padding: 20px 16px; }
+    h1 { font-size: 26px; }
+    .card { padding: 18px; }
+    .header-top { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header-top">
+  <div class="brand">
+    <svg viewBox="0 0 64 64" fill="none">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M32 4L4 20v24l28 16 28-16V20L32 4z" stroke="url(#grad1)" stroke-width="3"/>
+      <path d="M20 24l12 12 12-12" stroke="#facc15" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="32" cy="36" r="4" fill="#facc15"/>
+    </svg>
+    <div>
+      <h1>VOID <span>TECH</span> VCF</h1>
+      <div class="tagline">Contact Registration & Export System</div>
+    </div>
+  </div>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+</div>
+
+<div class="card">
+  <h3>Register Contact</h3>
+  <div id="statusBox" class="status open">Checking status...</div>
+  <div id="formBox">
+    <input id="name" placeholder="Full Name" required>
+    <input id="phone" placeholder="Phone Number" required>
+    <button id="addBtn">Add Contact</button>
+  </div>
+  <p class="count" id="countText"></p>
+</div>
+
+<div class="card">
+  <h3>Admin Panel</h3>
+  <div id="loginBox">
+    <input id="adminPass" type="password" placeholder="Enter admin password">
+    <button onclick="unlock()">Unlock Dashboard</button>
+  </div>
+  
+  <div id="adminBox" class="hidden">
+    <p class="count" id="count">Loading...</p>
+    <div style="margin: 16px 0;">
+      <input id="limitInput" type="number" placeholder="Set contact limit">
+      <button onclick="updateLimit()">Update Limit</button>
+    </div>
+    <table id="table">
+      <thead>
+        <tr><th>#</th><th>Name</th><th>Phone</th><th>Time</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="exportPDF()">📄 Export Branded PDF</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, doc, getDoc, setDoc, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// Your Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyBul4fu0mH8Y3LMI2KkTJMxJ8kFrT0XOXg",
+  authDomain: "void-tech-vcf.firebaseapp.com",
+  projectId: "void-tech-vcf",
+  storageBucket: "void-tech-vcf.firebasestorage.app",
+  messagingSenderId: "1035106220699",
+  appId: "1:1035106220699:web:20d2101eedeeefda10643e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const peopleRef = collection(db, "registrations");
+const settingsRef = doc(db, "settings", "config");
+
+const ADMIN_PASSWORD = "yourSecret123"; // CHANGE THIS
+let people = [];
+let config = { limit: 500, enabled: true };
+
+// Theme toggle
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeButton(savedTheme);
+}
+
+function updateThemeButton(theme) {
+  const btn = document.querySelector('.theme-toggle');
+  btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+}
+
+window.toggleTheme = function() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeButton(newTheme);
+}
+
+initTheme();
+
+function normalizePhone(phone) {
+  return phone.replace(/[\s\-\(\)]/g, '').trim();
+}
+
+async function loadConfig() {
+  const snap = await getDoc(settingsRef);
+  if (snap.exists()) {
+    config = snap.data();
+  } else {
+    await setDoc(settingsRef, config);
+  }
+  
+  const peopleSnap = await getDocs(peopleRef);
+  const currentCount = peopleSnap.size;
+  
+  document.getElementById('countText').textContent = `${currentCount}/${config.limit} spots filled`;
+  
+  if (!config.enabled || currentCount >= config.limit) {
+    document.getElementById('formBox').classList.add('hidden');
+    document.getElementById('statusBox').className = 'status closed';
+    document.getElementById('statusBox').textContent = 'Registration Closed';
+  } else {
+    document.getElementById('statusBox').className = 'status open';
+    document.getElementById('statusBox').textContent = 'Registration Open';
+  }
+}
+
+loadConfig();
+
+document.getElementById('addBtn').addEventListener('click', async () => {
+  const name = document.getElementById('name').value.trim();
+  const phone = normalizePhone(document.getElementById('phone').value);
+  
+  if (!name || !phone) {
+    alert('Please fill both name and phone');
+    return;
+  }
+  
+  const peopleSnap = await getDocs(peopleRef);
+  if (peopleSnap.size >= config.limit) {
+    alert('Registration is full!');
+    loadConfig();
+    return;
+  }
+  
+  const duplicateQuery = query(peopleRef, where('phoneNormalized', '==', phone));
+  const duplicateSnap = await getDocs(duplicateQuery);
+  
+  if (!duplicateSnap.empty) {
+    alert('This phone number is already registered!');
+    return;
+  }
+  
+  await addDoc(peopleRef, { 
+    name, 
+    phone: document.getElementById('phone').value.trim(),
+    phoneNormalized: phone,
+    createdAt: new Date() 
+  });
+  
+  document.getElementById('name').value = '';
+  document.getElementById('phone').value = '';
+  alert('Registered successfully!');
+  loadConfig();
+});
+
+window.unlock = async function() {
+  const pass = document.getElementById('adminPass').value;
+  if (pass !== ADMIN_PASSWORD) {
+    alert('Wrong password');
+    return;
+  }
+  
+  const q = query(peopleRef, orderBy("createdAt", "desc"));
+  const snapshot = await getDocs(q);
+  
+  people = snapshot.docs.map(doc => doc.data());
+  
+  document.getElementById('count').textContent = `${people.length}/${config.limit} contacts registered`;
+  document.getElementById('limitInput').value = config.limit;
+  
+  const tbody = document.querySelector('#table tbody');
+  tbody.innerHTML = people.map((p, i) => `
+    <tr>
+      <td>${i + 1}</td>
+      <td>${p.name}</td>
+      <td>${p.phone}</td>
+      <td>${p.createdAt?.toDate?.().toLocaleString() || ''}</td>
+    </tr>
+  `).join('');
+  
+  document.getElementById('loginBox').classList.add('hidden');
+  document.getElementById('adminBox').classList.remove('hidden');
+}
+
+window.updateLimit = async function() {
+  const newLimit = parseInt(document.getElementById('limitInput').value);
+  if (!newLimit || newLimit < 1) {
+    alert('Enter a valid limit');
+    return;
+  }
+  
+  config.limit = newLimit;
+  await setDoc(settingsRef, config);
+  alert('Limit updated!');
+  loadConfig();
+}
+
+window.exportPDF = function() {
+  if (people.length === 0) {
+    alert('No data to export');
+    return;
+  }
+  
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  doc.setFillColor(15, 23, 42);
+  doc.rect(0, 0, 210, 35, 'F');
+  doc.setFillColor(56, 189, 248);
+  doc.circle(20, 18, 8, 'F');
+  doc.setFillColor(250, 204, 21);
+  doc.circle(20, 18, 4, 'F');
+  
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(18);
+  doc.text('VOID TECH VCF', 35, 16);
+  doc.setFontSize(10);
+  doc.text('Contact Registration & Export System', 35, 22);
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(11);
+  doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 45);
+  doc.text(`Total Contacts: ${people.length}`, 14, 52);
+  
+  let y = 60;
+  doc.setFillColor(51, 65, 85);
+  doc.rect(14, y, 182, 8, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(12);
+  doc.text('No.', 16, y + 6);
+  doc.text('Name', 30, y + 6);
+  doc.text('Phone', 110, y + 6);
+  
+  y += 12;
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(11);
+  
+  people.forEach((p, i) => {
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+    if (i % 2 === 0) {
+      doc.setFillColor(248, 250, 252);
+      doc.rect(14, y - 4, 182, 8, 'F');
+    }
+    doc.text(String(i + 1), 16, y);
+    doc.text(p.name, 30, y);
+    doc.text(p.phone, 110, y);
+    y += 8;
+  });
+  
+  doc.setTextColor(148, 163, 184);
+  doc.setFontSize(9);
+  doc.text('Generated by VOID TECH VCF System', 14, 285);
+  
+  doc.save('VOID_TECH_VCF_Contacts.pdf');
+}
+</script>
+
+</body>
+</html>
