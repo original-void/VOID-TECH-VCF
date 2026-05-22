@@ -35,7 +35,6 @@
   }
   
     * { box-sizing: border-box; }
-  
   body { 
     font-family: 'Inter', system-ui, -apple-system, sans-serif; 
     max-width: 750px; 
@@ -46,204 +45,33 @@
     min-height: 100vh;
     transition: background 0.4s ease, color 0.4s ease;
   }
-  
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-  }
-  
-  .brand { 
-    display: flex; 
-    align-items: center; 
-    gap: 16px; 
-    animation: fadeIn 0.6s ease;
-  }
-  
-  .brand svg { 
-    width: 48px; 
-    height: 48px; 
-    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5));
-  }
-  
-  h1 { 
-    color: #38bdf8; 
-    letter-spacing: 1.5px; 
-    margin: 0; 
-    font-size: 32px; 
-    font-weight: 800;
-    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-  }
-  
-  h1 span { 
-    color: #facc15; 
-    text-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
-  }
-  
-  .tagline { 
-    color: var(--text-secondary); 
-    font-size: 14px; 
-    margin-top: 6px; 
-    font-weight: 500;
-  }
-  
-  .theme-toggle {
-    width: auto;
-    padding: 10px 16px;
-    margin: 0;
-    background: var(--card-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(12px);
-  }
-  
-  .theme-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card { 
-    background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg-2) 100%);
-    padding: 24px; 
-    border-radius: 16px; 
-    margin-bottom: 24px; 
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(12px);
-    animation: slideUp 0.5s ease;
-    transition: all 0.4s ease;
-  }
-  
-  .card h3 {
-    margin-top: 0;
-    color: var(--text-primary);
-    font-size: 18px;
-    font-weight: 700;
-  }
-  
-  input, button:not(.theme-toggle) { 
-    width: 100%; 
-    padding: 14px 16px; 
-    margin: 10px 0; 
-    border-radius: 10px; 
-    border: 1px solid var(--border); 
-    background: var(--input-bg); 
-    color: var(--text-primary); 
-    font-size: 15px; 
-    font-family: inherit;
-    transition: all 0.3s ease;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #38bdf8;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
-  }
-  
-  button:not(.theme-toggle) { 
-    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%); 
-    color: #0f172a; 
-    font-weight: 700; 
-    cursor: pointer; 
-    border: none; 
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
-  }
-  
-  button:not(.theme-toggle):hover { 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
-  }
-  
-  button:disabled { 
-    background: #475569; 
-    cursor: not-allowed; 
-    transform: none;
-    box-shadow: none;
-  }
-  
-  table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin-top: 16px; 
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  
-  th, td { 
-    padding: 12px 16px; 
-    border-bottom: 1px solid var(--border); 
-    text-align: left; 
-  }
-  
-  th { 
-    color: var(--text-secondary); 
-    background: var(--table-bg);
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  
-  tr:hover {
-    background: var(--table-hover);
-  }
-  
-  .count { 
-    color: var(--text-secondary); 
-    font-size: 14px; 
-    margin-top: 12px;
-    font-weight: 500;
-  }
-  
+  .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+  .brand { display: flex; align-items: center; gap: 16px; animation: fadeIn 0.6s ease; }
+  .brand svg { width: 48px; height: 48px; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5)); }
+  h1 { color: #38bdf8; letter-spacing: 1.5px; margin: 0; font-size: 32px; font-weight: 800; text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+  h1 span { color: #facc15; text-shadow: 0 0 20px rgba(250, 204, 21, 0.3); }
+  .tagline { color: var(--text-secondary); font-size: 14px; margin-top: 6px; font-weight: 500; }
+  .theme-toggle { width: auto; padding: 10px 16px; margin: 0; background: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; backdrop-filter: blur(12px); }
+  .theme-toggle:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2); }
+  .card { background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg-2) 100%); padding: 24px; border-radius: 16px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); backdrop-filter: blur(12px); animation: slideUp 0.5s ease; transition: all 0.4s ease; }
+  .card h3 { margin-top: 0; color: var(--text-primary); font-size: 18px; font-weight: 700; }
+  input, button:not(.theme-toggle) { width: 100%; padding: 14px 16px; margin: 10px 0; border-radius: 10px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-primary); font-size: 15px; font-family: inherit; transition: all 0.3s ease; }
+  input:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); }
+  button:not(.theme-toggle) { background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%); color: #0f172a; font-weight: 700; cursor: pointer; border: none; letter-spacing: 0.5px; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3); }
+  button:not(.theme-toggle):hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4); }
+  button:disabled { background: #475569; cursor: not-allowed; transform: none; box-shadow: none; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; overflow: hidden; border-radius: 8px; }
+  th, td { padding: 12px 16px; border-bottom: 1px solid var(--border); text-align: left; }
+  th { color: var(--text-secondary); background: var(--table-bg); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+  tr:hover { background: var(--table-hover); }
+  .count { color: var(--text-secondary); font-size: 14px; margin-top: 12px; font-weight: 500; }
   .hidden { display: none; }
-  
-  .status { 
-    padding: 14px; 
-    border-radius: 10px; 
-    margin-top: 12px; 
-    text-align: center; 
-    font-weight: 600;
-    animation: fadeIn 0.4s ease;
-  }
-  
-  .status.closed { 
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
-    color: white; 
-  }
-  
-  .status.open { 
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); 
-    color: white; 
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slideUp {
-    from { 
-      opacity: 0; 
-      transform: translateY(20px);
-    }
-    to { 
-      opacity: 1; 
-      transform: translateY(0);
-    }
-  }
-  
-  @media (max-width: 600px) {
-    body { padding: 20px 16px; }
-    h1 { font-size: 26px; }
-    .card { padding: 18px; }
-    .header-top { flex-direction: column; gap: 16px; align-items: flex-start; }
-  }
+  .status { padding: 14px; border-radius: 10px; margin-top: 12px; text-align: center; font-weight: 600; animation: fadeIn 0.4s ease; }
+  .status.closed { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; }
+  .status.open { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { body { padding: 20px 16px; } h1 { font-size: 26px; } .card { padding: 18px; } .header-top { flex-direction: column; gap: 16px; align-items: flex-start; } }
 </style>
 </head>
 <body>
@@ -307,14 +135,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, getDoc, setDoc, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Your Firebase config
+// Your new Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyBul4fu0mH8Y3LMI2KkTJMxJ8kFrT0XOXg",
-  authDomain: "void-tech-vcf.firebaseapp.com",
-  projectId: "void-tech-vcf",
-  storageBucket: "void-tech-vcf.firebasestorage.app",
-  messagingSenderId: "1035106220699",
-  appId: "1:1035106220699:web:20d2101eedeeefda10643e"
+  apiKey: "AIzaSyCYt86kpFReD0POocUphJmV6p9yLsaPNXs",
+  authDomain: "void-vcf.firebaseapp.com",
+  projectId: "void-vcf",
+  storageBucket: "void-vcf.firebasestorage.app",
+  messagingSenderId: "841538783279",
+  appId: "1:841538783279:web:b0ac9543c22559ee5d1eda"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -322,7 +150,7 @@ const db = getFirestore(app);
 const peopleRef = collection(db, "registrations");
 const settingsRef = doc(db, "settings", "config");
 
-const ADMIN_PASSWORD = "yourSecret123"; // CHANGE THIS
+const ADMIN_PASSWORD = "MR VOOID"; // CHANGE THIS
 let people = [];
 let config = { limit: 500, enabled: true };
 
@@ -332,12 +160,10 @@ function initTheme() {
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeButton(savedTheme);
 }
-
 function updateThemeButton(theme) {
   const btn = document.querySelector('.theme-toggle');
   btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
 }
-
 window.toggleTheme = function() {
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -345,7 +171,6 @@ window.toggleTheme = function() {
   localStorage.setItem('theme', newTheme);
   updateThemeButton(newTheme);
 }
-
 initTheme();
 
 function normalizePhone(phone) {
@@ -353,25 +178,31 @@ function normalizePhone(phone) {
 }
 
 async function loadConfig() {
-  const snap = await getDoc(settingsRef);
-  if (snap.exists()) {
-    config = snap.data();
-  } else {
-    await setDoc(settingsRef, config);
-  }
-  
-  const peopleSnap = await getDocs(peopleRef);
-  const currentCount = peopleSnap.size;
-  
-  document.getElementById('countText').textContent = `${currentCount}/${config.limit} spots filled`;
-  
-  if (!config.enabled || currentCount >= config.limit) {
-    document.getElementById('formBox').classList.add('hidden');
+  try {
+    const snap = await getDoc(settingsRef);
+    if (snap.exists()) {
+      config = snap.data();
+    } else {
+      await setDoc(settingsRef, config);
+    }
+    
+    const peopleSnap = await getDocs(peopleRef);
+    const currentCount = peopleSnap.size;
+    
+    document.getElementById('countText').textContent = `${currentCount}/${config.limit} spots filled`;
+    
+    if (!config.enabled || currentCount >= config.limit) {
+      document.getElementById('formBox').classList.add('hidden');
+      document.getElementById('statusBox').className = 'status closed';
+      document.getElementById('statusBox').textContent = 'Registration Closed';
+    } else {
+      document.getElementById('statusBox').className = 'status open';
+      document.getElementById('statusBox').textContent = 'Registration Open';
+    }
+  } catch (err) {
+    console.error("Firebase error:", err);
     document.getElementById('statusBox').className = 'status closed';
-    document.getElementById('statusBox').textContent = 'Registration Closed';
-  } else {
-    document.getElementById('statusBox').className = 'status open';
-    document.getElementById('statusBox').textContent = 'Registration Open';
+    document.getElementById('statusBox').textContent = 'Error: Check console';
   }
 }
 
@@ -386,32 +217,37 @@ document.getElementById('addBtn').addEventListener('click', async () => {
     return;
   }
   
-  const peopleSnap = await getDocs(peopleRef);
-  if (peopleSnap.size >= config.limit) {
-    alert('Registration is full!');
+  try {
+    const peopleSnap = await getDocs(peopleRef);
+    if (peopleSnap.size >= config.limit) {
+      alert('Registration is full!');
+      loadConfig();
+      return;
+    }
+    
+    const duplicateQuery = query(peopleRef, where('phoneNormalized', '==', phone));
+    const duplicateSnap = await getDocs(duplicateQuery);
+    
+    if (!duplicateSnap.empty) {
+      alert('This phone number is already registered!');
+      return;
+    }
+    
+    await addDoc(peopleRef, { 
+      name, 
+      phone: document.getElementById('phone').value.trim(),
+      phoneNormalized: phone,
+      createdAt: new Date() 
+    });
+    
+    document.getElementById('name').value = '';
+    document.getElementById('phone').value = '';
+    alert('Registered successfully!');
     loadConfig();
-    return;
+  } catch (err) {
+    console.error(err);
+    alert('Error saving contact. Check console.');
   }
-  
-  const duplicateQuery = query(peopleRef, where('phoneNormalized', '==', phone));
-  const duplicateSnap = await getDocs(duplicateQuery);
-  
-  if (!duplicateSnap.empty) {
-    alert('This phone number is already registered!');
-    return;
-  }
-  
-  await addDoc(peopleRef, { 
-    name, 
-    phone: document.getElementById('phone').value.trim(),
-    phoneNormalized: phone,
-    createdAt: new Date() 
-  });
-  
-  document.getElementById('name').value = '';
-  document.getElementById('phone').value = '';
-  alert('Registered successfully!');
-  loadConfig();
 });
 
 window.unlock = async function() {
@@ -423,7 +259,6 @@ window.unlock = async function() {
   
   const q = query(peopleRef, orderBy("createdAt", "desc"));
   const snapshot = await getDocs(q);
-  
   people = snapshot.docs.map(doc => doc.data());
   
   document.getElementById('count').textContent = `${people.length}/${config.limit} contacts registered`;
@@ -464,25 +299,21 @@ window.exportPDF = function() {
   
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-  
   doc.setFillColor(15, 23, 42);
   doc.rect(0, 0, 210, 35, 'F');
   doc.setFillColor(56, 189, 248);
   doc.circle(20, 18, 8, 'F');
   doc.setFillColor(250, 204, 21);
   doc.circle(20, 18, 4, 'F');
-  
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(18);
   doc.text('VOID TECH VCF', 35, 16);
   doc.setFontSize(10);
   doc.text('Contact Registration & Export System', 35, 22);
-  
   doc.setTextColor(0, 0, 0);
   doc.setFontSize(11);
   doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 45);
   doc.text(`Total Contacts: ${people.length}`, 14, 52);
-  
   let y = 60;
   doc.setFillColor(51, 65, 85);
   doc.rect(14, y, 182, 8, 'F');
@@ -491,16 +322,11 @@ window.exportPDF = function() {
   doc.text('No.', 16, y + 6);
   doc.text('Name', 30, y + 6);
   doc.text('Phone', 110, y + 6);
-  
   y += 12;
   doc.setTextColor(0, 0, 0);
   doc.setFontSize(11);
-  
   people.forEach((p, i) => {
-    if (y > 270) {
-      doc.addPage();
-      y = 20;
-    }
+    if (y > 270) { doc.addPage(); y = 20; }
     if (i % 2 === 0) {
       doc.setFillColor(248, 250, 252);
       doc.rect(14, y - 4, 182, 8, 'F');
@@ -510,14 +336,11 @@ window.exportPDF = function() {
     doc.text(p.phone, 110, y);
     y += 8;
   });
-  
   doc.setTextColor(148, 163, 184);
   doc.setFontSize(9);
   doc.text('Generated by VOID TECH VCF System', 14, 285);
-  
   doc.save('VOID_TECH_VCF_Contacts.pdf');
 }
 </script>
-
 </body>
 </html>
